@@ -174,14 +174,22 @@ const mockData = {
 const pageHTML = generatePage(mockData);
 
 
-// promptUser()
-//     .then(promptProject)
-//     .then(portfolioData => {
-//         const pageHTML = generatePage(portfolioData);
-        fs.writeFile('./index.html', pageHTML, err => {
-            if (err) throw new Error(err);
-            console.log('Page created! Check out index.html in this directory to see it!');
-        });
-//     });
-
+promptUser()
+    .then(promptProject)
+    .then(portfolioData => {
+        return generatePage(portfolioData);
+    })
+    .then(pageHTML => {
+        return fs.writeFile(pageHtml);
+    })
+    .then(writeFileResponse => {
+        console.log(writeFileReponse);
+        return fs.copyFile();
+    })
+    .then(copyFileResponse => {
+        console.log(copyFileResponse);
+    })
+    .catch(err => {
+        console.log(err);
+    });
 
